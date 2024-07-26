@@ -69,7 +69,7 @@ func (c *cpusetController) Create(path string, resources *specs.LinuxResources) 
 		} {
 			if t.value != "" {
 				if err := os.WriteFile(
-					filepath.Join(c.Path(path), "cpuset."+t.name),
+					filepath.Join(c.Path(path), t.name),
 					[]byte(t.value),
 					defaultFilePerm,
 				); err != nil {
@@ -86,10 +86,10 @@ func (c *cpusetController) Update(path string, resources *specs.LinuxResources) 
 }
 
 func (c *cpusetController) getValues(path string) (cpus []byte, mems []byte, err error) {
-	if cpus, err = os.ReadFile(filepath.Join(path, "cpuset.cpus")); err != nil && !os.IsNotExist(err) {
+	if cpus, err = os.ReadFile(filepath.Join(path, "cpus")); err != nil && !os.IsNotExist(err) {
 		return
 	}
-	if mems, err = os.ReadFile(filepath.Join(path, "cpuset.mems")); err != nil && !os.IsNotExist(err) {
+	if mems, err = os.ReadFile(filepath.Join(path, "mems")); err != nil && !os.IsNotExist(err) {
 		return
 	}
 	return cpus, mems, nil
@@ -134,7 +134,7 @@ func (c *cpusetController) copyIfNeeded(current, parent string) error {
 	}
 	if isEmpty(currentCpus) {
 		if err := os.WriteFile(
-			filepath.Join(current, "cpuset.cpus"),
+			filepath.Join(current, "cpus"),
 			parentCpus,
 			defaultFilePerm,
 		); err != nil {
@@ -143,7 +143,7 @@ func (c *cpusetController) copyIfNeeded(current, parent string) error {
 	}
 	if isEmpty(currentMems) {
 		if err := os.WriteFile(
-			filepath.Join(current, "cpuset.mems"),
+			filepath.Join(current, "mems"),
 			parentMems,
 			defaultFilePerm,
 		); err != nil {
