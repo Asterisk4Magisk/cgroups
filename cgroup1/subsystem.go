@@ -37,9 +37,9 @@ const (
 	NetPrio   Name = "net_prio"
 	PerfEvent Name = "perf_event"
 	Cpuset    Name = "cpuset"
-	Cpu       Name = "cpu"
+	Cpu       Name = "cpuctl"
 	Cpuacct   Name = "cpuacct"
-	Memory    Name = "memory"
+	Memory    Name = "memcg"
 	Blkio     Name = "blkio"
 	Rdma      Name = "rdma"
 )
