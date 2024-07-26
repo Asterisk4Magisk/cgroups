@@ -55,23 +55,11 @@ func (c *cpuController) Create(path string, resources *specs.LinuxResources) err
 			uvalue *uint64
 		}{
 			{
-				name:   "rt_period_us",
-				uvalue: cpu.RealtimePeriod,
-			},
-			{
-				name:   "rt_runtime_us",
-				ivalue: cpu.RealtimeRuntime,
-			},
-			{
 				name:   "shares",
 				uvalue: cpu.Shares,
 			},
 			{
-				name:   "cfs_period_us",
-				uvalue: cpu.Period,
-			},
-			{
-				name:   "cfs_quota_us",
+				name:   "uclamp.max",
 				ivalue: cpu.Quota,
 			},
 		} {
