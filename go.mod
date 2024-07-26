@@ -1,4 +1,4 @@
-module github.com/containerd/cgroups/v3
+module github.com/Asterisk4Magisk/cgroups
 
 go 1.21
 
