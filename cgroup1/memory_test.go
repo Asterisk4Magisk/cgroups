@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	v1 "github.com/containerd/cgroups/v3/cgroup1/stats"
+	v1 "github.com/Asterisk4Magisk/cgroups/cgroup1/stats"
 	specs "github.com/opencontainers/runtime-spec/specs-go"
 )
 

@@ -22,7 +22,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/containerd/cgroups/v3"
+	"github.com/Asterisk4Magisk/cgroups"
 )
 
 func TestStaticPath(t *testing.T) {

@@ -25,7 +25,7 @@ jobs:
       - name: Checkout cgroups
         uses: actions/checkout@v4
         with:
-          path: src/github.com/containerd/cgroups
+          path: src/github.com/Asterisk4Magisk/cgroups
           fetch-depth: 25
 
       #
@@ -35,12 +35,12 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.x'
-          cache-dependency-path: src/github.com/containerd/cgroups
+          cache-dependency-path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Project checks
         uses: containerd/project-checks@v1.1.0
         with:
-          working-directory: src/github.com/containerd/cgroups
+          working-directory: src/github.com/Asterisk4Magisk/cgroups
 
   lint:
     name: Lint
@@ -56,20 +56,20 @@ jobs:
       - name: Checkout cgroups
         uses: actions/checkout@v4
         with:
-          path: src/github.com/containerd/cgroups
+          path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
-          cache-dependency-path: src/github.com/containerd/cgroups
+          cache-dependency-path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
           version: v1.57.1
           args: --verbose
-          working-directory: src/github.com/containerd/cgroups
+          working-directory: src/github.com/Asterisk4Magisk/cgroups
 
   test:
     name: Test cgroups
@@ -87,7 +87,7 @@ jobs:
       - name: Checkout cgroups
         uses: actions/checkout@v4
         with:
-          path: src/github.com/containerd/cgroups
+          path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Install Go
         uses: actions/setup-go@v5
@@ -99,11 +99,11 @@ jobs:
       - name: Run cgroup tests
         run: |
           $(command -v go) test -exec sudo -v -race -coverprofile=coverage.txt -covermode=atomic ./...
-        working-directory: src/github.com/containerd/cgroups
+        working-directory: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Build cgctl
         run: make all
-        working-directory: src/github.com/containerd/cgroups
+        working-directory: src/github.com/Asterisk4Magisk/cgroups
 
   proto:
     name: Compare auto-generated Go files
@@ -113,13 +113,13 @@ jobs:
       - name: Checkout cgroups
         uses: actions/checkout@v4
         with:
-          path: src/github.com/containerd/cgroups
+          path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.19.x'
-          cache-dependency-path: src/github.com/containerd/cgroups
+          cache-dependency-path: src/github.com/Asterisk4Magisk/cgroups
 
       - name: Set env
         shell: bash
@@ -136,11 +136,11 @@ jobs:
       - name: Install proto-related tools for Go
         run: |
           go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
-          go install github.com/containerd/protobuild@v0.3.0
-          go install github.com/containerd/protobuild/cmd/go-fix-acronym@v0.3.0
+          go install github.com/Asterisk4Magisk/protobuild@v0.3.0
+          go install github.com/Asterisk4Magisk/protobuild/cmd/go-fix-acronym@v0.3.0
 
       - name: Compare auto-generated Go files
         run: |
           make proto
           git diff --exit-code
-        working-directory: src/github.com/containerd/cgroups
+        working-directory: src/github.com/Asterisk4Magisk/cgroups
